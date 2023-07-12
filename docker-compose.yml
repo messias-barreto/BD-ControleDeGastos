@@ -1,0 +1,58 @@
+version: "3.9"
+services:
+  app:
+    image: nginx:stable-alpine
+    container_name: app
+    volumes:
+      - ./src:/var/www/html
+      - ./docker/nginx/site.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - "8080:80"
+    depends_on:
+      - php82
+    networks:
+      - bd-gestao-custo
+
+  php82:
+    build: 
+      context: .
+      dockerfile: ./docker/php8.2/Dockerfile
+    volumes:
+      - ./src:/var/www/html
+    container_name: php8.2
+    ports:
+      - "9000:9000"
+    networks:
+      - bd-gestao-custo
+
+  database:
+    container_name: mysql
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    volumes: 
+      - ./docker/database/mysql:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: controledegastos
+      MYSQL_USER: docker
+      MYSQL_ROOT_PASSWORD: 123123
+    ports:
+      - 3306:3306
+    networks: 
+      - bd-gestao-custo
+
+  composer:
+    image: composer:latest
+    container_name: composer
+    volumes:
+      - ./src:/var/www/html
+    working_dir: /var/www/html
+    depends_on:
+      - database
+      - php82
+    networks:
+      - bd-gestao-custo
+
+networks: 
+    bd-gestao-custo:
+      driver: bridge
