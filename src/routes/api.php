@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\CategoryReceitaController;
 use App\Http\Controllers\API\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -21,3 +22,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/user/find/{id}', [UserController::class, 'find']);
 Route::post('/user/create', [UserController::class, 'create']);
+
+Route::post('/category-receitas/create', [CategoryReceitaController::class, 'create']);

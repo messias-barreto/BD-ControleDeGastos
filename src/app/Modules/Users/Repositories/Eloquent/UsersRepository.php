@@ -5,7 +5,8 @@ namespace App\Modules\Users\Repositories\Eloquent;
 use App\Models\User;
 use App\Modules\Users\Contracts\IUserRepository;
 
-class UsersRepository implements IUserRepository {
+class UsersRepository implements IUserRepository 
+{
     protected $user;
 
     public function __construct()
@@ -21,6 +22,11 @@ class UsersRepository implements IUserRepository {
 
     function getOneUser($user_id)
     {
-        return $user = $this->user->find($user_id);
+        return $this->user->find($user_id);
+    }
+
+    function getOneUserByEmail($email)
+    {
+        return $this->user->where('email', '=', $email)->first();
     }
 }
