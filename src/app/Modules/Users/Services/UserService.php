@@ -2,6 +2,7 @@
 
 namespace App\Modules\Users\Services;
 
+use App\Exceptions\NotFoundExceptions;
 use App\Modules\Users\Contracts\IUserRepository;
 use Exception;
 
@@ -27,7 +28,7 @@ class UserService {
     {
         $user = $this->repository->getOneUser($user_id);
         if(empty($user)) {
-            return ['data' => $user, 'message' => 'Usuário Não Encontrado!', 'status' => 400];
+            return throw new NotFoundExceptions('Usuário Não Encontrado!', 400); 
         }
 
         return ['data' => $user, 'message' => 'Usuário Encontrado!', 'status' => 200];

@@ -22,7 +22,7 @@ class CategoryReceitasRepository implements ICategoryReceitasRepository
     public function getAllCategories()
     {
         $category = $this->repository->all();
-        return $category;
+        return null;
     }
 
     public function getCategoryById($id)

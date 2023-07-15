@@ -23,4 +23,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/user/find/{id}', [UserController::class, 'find']);
 Route::post('/user/create', [UserController::class, 'create']);
 
-Route::post('/category-receitas/create', [CategoryReceitaController::class, 'create']);
+Route::post('/category-receitas', [CategoryReceitaController::class, 'create']);
+Route::get('/category-receitas/{id}', [CategoryReceitaController::class, 'find']);
+Route::get('/category-receitas', [CategoryReceitaController::class, 'getAllCategories']);

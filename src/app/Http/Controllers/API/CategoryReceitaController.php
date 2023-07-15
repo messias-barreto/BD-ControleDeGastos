@@ -24,4 +24,15 @@ class CategoryReceitaController extends Controller
         $category = $this->categoryReceitasServices->createNewCategory($request->all());
         return response()->json($category, $category['status']);
     }
+
+    public function find($id)
+    {
+
+    }
+
+    public function getAllCategories()
+    {
+        $categories = $this->categoryReceitasServices->getAllCategories();
+        return response()->json($categories, $categories['status']);
+    }
 }
