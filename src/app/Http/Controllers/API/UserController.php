@@ -30,5 +30,5 @@ class UserController extends Controller
         $user = $this->userService->getOneUser($id);
         return response()->json($user, 200);
     }
-
+    
 }

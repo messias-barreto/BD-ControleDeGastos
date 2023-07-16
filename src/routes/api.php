@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\CategoryReceitaController;
+use App\Http\Controllers\API\ReceitaController;
 use App\Http\Controllers\API\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -16,13 +17,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
-Route::get('/user/find/{id}', [UserController::class, 'find']);
-Route::post('/user/create', [UserController::class, 'create']);
+Route::get('/user/{id}', [UserController::class, 'find']);
+Route::post('/user', [UserController::class, 'create']);
 
 Route::post('/category-receitas', [CategoryReceitaController::class, 'create']);
 Route::get('/category-receitas/{id}', [CategoryReceitaController::class, 'find']);
 Route::get('/category-receitas', [CategoryReceitaController::class, 'getAllCategories']);
+Route::post('/receitas', [ReceitaController::class, 'create']);
+Route::get('/receitas/{user_id}', [ReceitaController::class, 'getAllReceitas']);

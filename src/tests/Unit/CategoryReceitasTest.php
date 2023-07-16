@@ -19,16 +19,20 @@ class CategoryReceitasTest extends TestCase
         $this->categoryReceitasService = new CategoryReceitasService($this->categoryReceitasRepositoryInMemory);
     }
 
-    public function testSholdBeAbleCreateNewCategoryReceita(): void
+    public function createCategoryReceita()
     {
-        $this->getDependecies();
-        
-        $data = array(
+        return array(
             'name' => 'any_name',
             'description' => 'any_description',
             'id' => 'any_id'
         );
+    }
 
+    public function testSholdBeAbleCreateNewCategoryReceita(): void
+    {
+        $this->getDependecies();
+        $data = $this->createCategoryReceita();
+        
         $newCategory = $this->categoryReceitasService->createNewCategory($data);
         $this->assertEquals($newCategory['status'], 201);
     }
@@ -36,16 +40,11 @@ class CategoryReceitasTest extends TestCase
     public function testSholdBeAbleFindCategoryById()
     {
         $this->getDependecies();
-
-        $data = array(
-            'name' => 'any_name',
-            'description' => 'any_description',
-            'id' => 'any_id'
-        );
+        $data = $this->createCategoryReceita();
 
         $new_category = $this->categoryReceitasService->createNewCategory($data);
         $categoryAlreadyExists = $this->categoryReceitasService->getCategoryById($data['id']);
-        
+
         $this->assertEquals($new_category['data'], $categoryAlreadyExists['data']);
     }
 
@@ -53,15 +52,10 @@ class CategoryReceitasTest extends TestCase
     {
         $this->getDependecies();
 
-        $data = array(
-            'name' => 'any_name',
-            'description' => 'any_description',
-            'id' => 'any_id'
-        );
+        $data = $this->createCategoryReceita();
+        $this->expectException(NotFoundExceptions::class);
 
-        $this->expectException(NotFoundExceptions::class);        
-        
         $this->categoryReceitasService->createNewCategory($data);
-        $this->categoryReceitasService->getCategoryById('invalid_id');  
+        $this->categoryReceitasService->getCategoryById('invalid_id');
     }
 }

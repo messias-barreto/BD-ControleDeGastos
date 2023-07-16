@@ -11,8 +11,7 @@ class CategoryReceitasRepositoryInMemory implements ICategoryReceitasRepository
     public function createNewCategory($request)
     {
         array_push($this->category, $request);
-        return end($this->category);
-        
+        return end($this->category);   
     }
 
     public function getAllCategories()

@@ -17,10 +17,10 @@ return new class extends Migration
             $table->decimal('valor', 10, 2);
             $table->dateTime('data');
             
-            $table->unsignedBigInteger('category_receitas_id');
+            $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('user_id');
             
-            $table->foreign('category_receitas_id')->references('id')->on('category_receitas')->onUpdate('cascade');
+            $table->foreign('category_id')->references('id')->on('category_receitas')->onUpdate('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade');
             $table->timestamps();
         });
