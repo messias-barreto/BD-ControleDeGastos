@@ -28,13 +28,13 @@ class ReceitaController extends Controller
                                         $this->userRepository );
     }
 
-    public function create(ReceitaRequest $request)
+    public function store(ReceitaRequest $request)
     {
         $newReceita = $this->receitaService->createNewReceita($request->all());
         return response()->json($newReceita, $newReceita['status']);
     }
 
-    public function getAllReceitas($user_id)
+    public function getAllUserReceitas($user_id)
     {
         $receitas = $this->receitaService->getAllUsersReceitas($user_id);
         return response()->json($receitas, $receitas['status']);

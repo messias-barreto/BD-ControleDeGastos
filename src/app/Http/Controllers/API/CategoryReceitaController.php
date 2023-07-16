@@ -19,7 +19,13 @@ class CategoryReceitaController extends Controller
         $this->categoryReceitasServices = new CategoryReceitasService($this->categoryReceitasRepository);
     }
 
-    public function create(CategoryReceitasRequest $request)
+    public function index()
+    {
+        $categories = $this->categoryReceitasServices->getAllCategories();
+        return response()->json($categories, $categories['status']);
+    }
+
+    public function store(CategoryReceitasRequest $request)
     {
         $category = $this->categoryReceitasServices->createNewCategory($request->all());
         return response()->json($category, $category['status']);
@@ -28,11 +34,5 @@ class CategoryReceitaController extends Controller
     public function find($id)
     {
 
-    }
-
-    public function getAllCategories()
-    {
-        $categories = $this->categoryReceitasServices->getAllCategories();
-        return response()->json($categories, $categories['status']);
     }
 }

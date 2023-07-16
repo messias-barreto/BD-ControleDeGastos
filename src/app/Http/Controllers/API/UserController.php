@@ -19,16 +19,15 @@ class UserController extends Controller
         $this->userService = new UserService($this->userRepository);
     }
 
-    public function create(UserRequest $request)
+    public function store(UserRequest $request)
     {
         $user = $this->userService->createNewUser($request->all());
         return $user;
     }
 
-    public function find($id)
+    public function show($id)
     {
         $user = $this->userService->getOneUser($id);
         return response()->json($user, 200);
     }
-    
 }
