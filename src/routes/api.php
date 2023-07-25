@@ -4,6 +4,9 @@ use App\Http\Controllers\API\CategoryReceitaController;
 use App\Http\Controllers\API\ReceitaController;
 use App\Http\Controllers\API\StatusReceitasController;
 use App\Http\Controllers\API\UserController;
+use App\Http\Controllers\Auth\API\LoginController;
+use App\Http\Controllers\Auth\API\LogoutController;
+use App\Http\Controllers\Auth\API\RegisterController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -18,8 +21,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::apiResource('/user', UserController::class);
-Route::apiResource('/category-receitas', CategoryReceitaController::class);
-Route::apiResource('/receitas', ReceitaController::class);
-Route::apiResource('/status-receitas', StatusReceitasController::class);
-Route::get('/receitas/user/{user_id}', [ReceitaController::class, 'getAllUserReceitas']);
+Route::apiResource('/user', UserController::class)->middleware('auth:sanctum');
+Route::apiResource('/category-receitas', CategoryReceitaController::class)->middleware('auth:sanctum');
+Route::apiResource('/receitas', ReceitaController::class)->middleware('auth:sanctum');
+Route::apiResource('/status-receitas', StatusReceitasController::class)->middleware('auth:sanctum');
+Route::get('/receitas/user/{user_id}', [ReceitaController::class, 'getAllUserReceitas'])->middleware('auth:sanctum');
+
+Route::prefix('auth')->group(function() {
+    Route::post('/register', [RegisterController::class, 'register']);
+    Route::post('/login', [LoginController::class, 'login']);
+    Route::post('/logout', [LogoutController::class, 'logout'])->middleware('auth:sanctum');
+});
