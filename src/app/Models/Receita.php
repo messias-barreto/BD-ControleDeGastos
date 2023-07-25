@@ -13,13 +13,15 @@ class Receita extends Model
         'valor',
         'data',
         'user_id',
-        'category_id'
+        'category_id',
+        'status'
     ];
 
     protected $guarded = [
         'id',
         'user_id',
-        'category_id'
+        'category_id',
+        'status'
     ];
 
     public function User()

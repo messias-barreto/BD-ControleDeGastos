@@ -6,25 +6,30 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ReceitaRequest;
 use App\Modules\Receitas\Repositories\Eloquent\CategoryReceitasRepository;
 use App\Modules\Receitas\Repositories\Eloquent\ReceitasRepository;
+use App\Modules\Receitas\Repositories\Eloquent\StatusReceitasRepository;
 use App\Modules\Receitas\Services\ReceitasService;
 use App\Modules\Users\Repositories\Eloquent\UsersRepository;
 
 class ReceitaController extends Controller
 {
     private $receitaService;
+    
     private $receitaRepository;
     private $categoryRepository;
+    private $statusReceitasRepository;
     private $userRepository;
 
     public function __construct()
     {
         $this->receitaRepository = app(ReceitasRepository::class);
         $this->categoryRepository = app(CategoryReceitasRepository::class);
+        $this->statusReceitasRepository = app(StatusReceitasRepository::class);
         $this->userRepository = app(UsersRepository::class);
 
         $this->receitaService = new ReceitasService(
                                         $this->receitaRepository,
                                         $this->categoryRepository,
+                                        $this->statusReceitasRepository,
                                         $this->userRepository );
     }
 

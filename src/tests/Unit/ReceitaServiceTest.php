@@ -5,6 +5,7 @@ namespace Tests\Unit;
 use App\Exceptions\NotFoundExceptions;
 use App\Modules\Receitas\Repositories\CategoryReceitasRepositoryInMemory;
 use App\Modules\Receitas\Repositories\ReceitasRepositoryInMemory;
+use App\Modules\Receitas\Repositories\StatusReceitasRepositoryInMemory;
 use App\Modules\Receitas\Services\ReceitasService;
 use App\Modules\Users\Repositories\UsersRepositoryInMemory;
 use PHPUnit\Framework\TestCase;
@@ -13,6 +14,7 @@ class ReceitaServiceTest extends TestCase
 {
     private $receitasRepositoryInMemory;
     private $categoryReceitasInMemory;
+    private $statusRepositoryInMemory;
     private $userRepositoryInMemory;
     private $receitasService;
 
@@ -20,16 +22,15 @@ class ReceitaServiceTest extends TestCase
     {
         $this->receitasRepositoryInMemory = app(ReceitasRepositoryInMemory::class);
         $this->categoryReceitasInMemory = app(CategoryReceitasRepositoryInMemory::class);
+        $this->statusRepositoryInMemory = app(StatusReceitasRepositoryInMemory::class);
         $this->userRepositoryInMemory = app(UsersRepositoryInMemory::class);
 
         $this->receitasService = new ReceitasService(
                                     $this->receitasRepositoryInMemory,
                                     $this->categoryReceitasInMemory,
+                                    $this->statusRepositoryInMemory,
                                     $this->userRepositoryInMemory
                                 );
-
-    
-        
     }
 
     public function createCategory()
@@ -59,8 +60,19 @@ class ReceitaServiceTest extends TestCase
             'data' => 'any_data',
             'user_id' => 'any_user_id',
             'category_id' => 'any_category_id',
+            'status' => 'any_status_id',
             'id' => 'any_id'
         );
+    }
+
+    public function createStatus()
+    {
+        return [
+            'id' => 'any_status_id',
+            'name' => 'any_name',
+            'description' => 'any_description',
+            'status' => 'any_status'
+        ];
     }
 
     public function testSholdBeAbleToAddNewReceita(): void
@@ -68,10 +80,13 @@ class ReceitaServiceTest extends TestCase
         $this->getDependecies();
         $data = $this->createReceita();
         $category = $this->createCategory();
+        $status = $this->createStatus();
         $user = $this->createUser();
 
         $this->categoryReceitasInMemory->createNewCategory($category);
+        $this->statusRepositoryInMemory->create($status);
         $this->userRepositoryInMemory->createNewUser($user);
+        
         $newData = $this->receitasService->createNewReceita($data);
         $this->assertEquals($newData['status'], 201);
     }
@@ -81,7 +96,9 @@ class ReceitaServiceTest extends TestCase
         $this->getDependecies();
         $data = $this->createReceita();
         $category = $this->createCategory();
+        $status = $this->createStatus();
 
+        $this->statusRepositoryInMemory->create($status);
         $this->expectException(NotFoundExceptions::class);      
         $this->expectExceptionMessage('Usuário não foi Encontrado!');  
 
