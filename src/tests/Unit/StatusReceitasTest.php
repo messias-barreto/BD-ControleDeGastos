@@ -33,4 +33,15 @@ class StatusReceitasTest extends TestCase
         $status = $this->statusReceitasService->createANewStatus($newStatus);
         $this->assertEquals($status['status'], 201);
     }
+
+    public function testSholdBeAbleGetAllStatus(): void
+    {
+        $this->getDependecies();
+        $newStatus = $this->createStatus();
+
+        $this->statusReceitasRepositoryInMemory->create($newStatus);
+        $status = $this->statusReceitasService->getAllStatus();
+
+        $this->assertEquals($status['status'], 200);
+    }
 }

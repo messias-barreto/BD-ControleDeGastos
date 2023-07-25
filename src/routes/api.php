@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\CategoryReceitaController;
 use App\Http\Controllers\API\ReceitaController;
+use App\Http\Controllers\API\StatusReceitasController;
 use App\Http\Controllers\API\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -20,4 +21,5 @@ use Illuminate\Support\Facades\Route;
 Route::apiResource('/user', UserController::class);
 Route::apiResource('/category-receitas', CategoryReceitaController::class);
 Route::apiResource('/receitas', ReceitaController::class);
+Route::apiResource('/status-receitas', StatusReceitasController::class);
 Route::get('/receitas/user/{user_id}', [ReceitaController::class, 'getAllUserReceitas']);
