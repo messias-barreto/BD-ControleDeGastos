@@ -2,9 +2,8 @@
 
 ## Após fazer o clone do Projeto
 
+Rode os Comandos
 ```bash
-Rode os Comandos:
-
 cd BD-ControleDeGastos
 docker compose up --build -d
 ```
@@ -23,9 +22,8 @@ docker compose up --build -d
   DB_PASSWORD=123123
 ```
 
+Rode os Comandos
 ```bash
-Rode os Comandos:
- 
 cd /src
 sudo chmod o+w ./storage/ -R
 php artisan key:generate
