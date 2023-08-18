@@ -56,12 +56,3 @@ Parâmetros
 Parâmetros
  {"name": "Compras","description": "", "status": "deposito" }
 <br>
-
-
-**Exemplo .env**
-<p>DB_CONNECTION=mysql</p>
-<p>DB_HOST=127.0.0.1</p>
-<p>DB_PORT=3306</p>
-<p>DB_DATABASE=seu_banco</p>
-<p>DB_USERNAME=root</p>
-<p>DB_PASSWORD=sua_senha</p>
