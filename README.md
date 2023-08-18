@@ -24,6 +24,8 @@ docker compose up --build -d
 ```
 
 ```bash
+Rode os Comandos:
+ 
 cd /src
 sudo chmod o+w ./storage/ -R
 php artisan key:generate
