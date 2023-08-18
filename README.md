@@ -6,6 +6,7 @@
 - Rota da Aplicação localhost:8080
 
 ## Configurando Banco de Dados
+- Renomear o Arquivo .env.exemple para .env
 - Modificar o Arquivo .env
   <br />
  <p>DB_CONNECTION=mysql</p>
@@ -17,6 +18,7 @@
 
 - cd /src
 - rode o comando **sudo chmod o+w ./storage/ -R**
+- rode o comando php artisan key:generate
 - rode o comando php artisan migrate --seed
 - Após o Migrate... altere o **DB_HOST** com o mesmo nome do seu container database: **DB_HOST=mysql**
 
