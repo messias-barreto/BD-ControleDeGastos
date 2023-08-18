@@ -1,9 +1,22 @@
 # BD-ControleDeGastos
 
-Após fazer o clone do Projeto
+## Após fazer o clone do Projeto
 - cd BD-ControleDeGastos
 - rode o comando **docker compose up --build -d**
 - Rota da Aplicação localhost:8080
+
+## Configurando Banco de Dados
+- Modificar o Arquivo .env
+  <br />
+ <p>DB_CONNECTION=mysql</p>
+ <p>DB_HOST=127.0.0.1</p>
+ <p>DB_PORT=3306</p>
+ <p>DB_DATABASE=seu_banco</p>
+ <p>DB_USERNAME=root</p>
+ <p>DB_PASSWORD=sua_senha</p>
+ 
+- rode o comando php artisan migrate --seed
+- Após o Migrate... altere o **DB_HOST** com o mesmo nome do seu container database: **DB_HOST=mysql**
 
 ## Rotas
 ## <p>Authentication</p>
