@@ -58,8 +58,6 @@ Parâmetros
 <br>
 
 
-
-
 **Exemplo .env**
 <p>DB_CONNECTION=mysql</p>
 <p>DB_HOST=127.0.0.1</p>

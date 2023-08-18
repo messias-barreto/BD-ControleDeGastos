@@ -7,7 +7,6 @@ use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\Auth\API\LoginController;
 use App\Http\Controllers\Auth\API\LogoutController;
 use App\Http\Controllers\Auth\API\RegisterController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
