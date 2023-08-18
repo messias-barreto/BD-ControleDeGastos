@@ -28,7 +28,7 @@ class UserService {
     {
         $user = $this->repository->getOneUser($user_id);
         if(empty($user)) {
-            return throw new NotFoundExceptions('Usuário Não Encontrado!', 400); 
+            throw new NotFoundExceptions('Usuário Não Encontrado!', 400); 
         }
 
         return ['data' => $user, 'message' => 'Usuário Encontrado!', 'status' => 200];

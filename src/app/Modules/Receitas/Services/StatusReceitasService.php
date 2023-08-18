@@ -18,7 +18,7 @@ class StatusReceitasService
     {
         $status = $this->repository->create($request);
         if(empty($status)) {
-            return throw new NotFoundExceptions('Erro ao Adicionar novo Status!', 400);
+            throw new NotFoundExceptions('Erro ao Adicionar novo Status!', 400);
         }
 
         return ['data' => $status, 

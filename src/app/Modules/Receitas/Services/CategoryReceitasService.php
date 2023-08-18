@@ -31,7 +31,7 @@ class CategoryReceitasService
     {
         $categories = $this->repository->getAllCategories();
         if(empty($categories)){
-            return throw new NotFoundExceptions('Nenhuma Categoria foi Encontrada', 400);
+            throw new NotFoundExceptions('Nenhuma Categoria foi Encontrada', 400);
         }
 
         return ['data' => $categories, 'message' => 'Categoria(s) Encontrada(s)!', 'status' => 200];
@@ -41,7 +41,7 @@ class CategoryReceitasService
     {
         $category = $this->repository->getCategoryById($id);
         if(empty($category)) {
-            return throw new NotFoundExceptions('Categoria não foi Encontrada', 400); 
+            throw new NotFoundExceptions('Categoria não foi Encontrada', 400); 
         }
 
         return ['data' => $category, 'message' => 'Categoria(s) Encontrada(s)!', 'status' => 200];
