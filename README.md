@@ -14,7 +14,9 @@
  <p>DB_DATABASE=controledegastos</p>
  <p>DB_USERNAME=root</p>
  <p>DB_PASSWORD=123123</p>
- 
+
+- cd /src
+- rode o comando **sudo chmod o+w ./storage/ -R**
 - rode o comando php artisan migrate --seed
 - Após o Migrate... altere o **DB_HOST** com o mesmo nome do seu container database: **DB_HOST=mysql**
 
