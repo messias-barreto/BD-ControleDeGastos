@@ -2,7 +2,7 @@
 
 ## Após fazer o clone do Projeto
 
-Rode os Comandos
+Rode os Comandos:
 ```bash
 cd BD-ControleDeGastos
 docker compose up --build -d
@@ -22,7 +22,7 @@ docker compose up --build -d
   DB_PASSWORD=123123
 ```
 
-Rode os Comandos
+Rode os Comandos:
 ```bash
 cd /src
 sudo chmod o+w ./storage/ -R
